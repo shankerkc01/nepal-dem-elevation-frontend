@@ -1,4 +1,4 @@
-// frontend/script.js
+nepal-dem-elevation-api.onrender.com// frontend/script.js
 
 const queryButton = document.getElementById("queryButton");
 
@@ -33,7 +33,7 @@ queryButton.addEventListener("click", async () => {
 
         // Backend API URL
         const apiURL =
-            `http://127.0.0.1:8000/elevation?lat=${latitude}&lon=${longitude}`;
+            `http://nepal-dem-elevation-api.onrender.com/elevation?lat=${latitude}&lon=${longitude}`;
 
 
         // Send request
