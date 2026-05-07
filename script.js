@@ -1,0 +1,71 @@
+// frontend/script.js
+
+const queryButton = document.getElementById("queryButton");
+
+const resultText = document.getElementById("resultText");
+
+
+queryButton.addEventListener("click", async () => {
+
+    const latitude =
+        document.getElementById("latitude").value;
+
+    const longitude =
+        document.getElementById("longitude").value;
+
+
+    // Input validation
+    if (latitude === "" || longitude === "") {
+
+        resultText.innerHTML =
+            "Please enter both latitude and longitude.";
+
+        return;
+    }
+
+
+    // Show loading message
+    resultText.innerHTML =
+        "Retrieving elevation...";
+
+
+    try {
+
+        // Backend API URL
+        const apiURL =
+            `http://127.0.0.1:8000/elevation?lat=${latitude}&lon=${longitude}`;
+
+
+        // Send request
+        const response = await fetch(apiURL);
+
+
+        // Check server response
+        if (!response.ok) {
+
+            throw new Error(
+                "Backend server error"
+            );
+        }
+
+
+        // Parse JSON
+        const data = await response.json();
+
+
+        // Display results
+        resultText.innerHTML = `
+            <strong>Latitude:</strong> ${data.latitude}<br>
+            <strong>Longitude:</strong> ${data.longitude}<br>
+            <strong>Elevation:</strong> ${data.elevation.toFixed(2)} meters
+        `;
+
+    } catch (error) {
+
+        console.error(error);
+
+        resultText.innerHTML =
+            "Failed to retrieve elevation.";
+    }
+
+});
