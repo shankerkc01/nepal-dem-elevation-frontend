@@ -1,4 +1,4 @@
-nepal-dem-elevation-api.onrender.com// frontend/script.js
+// frontend/script.js
 
 const queryButton = document.getElementById("queryButton");
 
